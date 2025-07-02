@@ -2,36 +2,42 @@ import React, { useState } from "react";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+const base = import.meta.env.BASE_URL;
 
 interface ImageItem {
   src: string;
   alt: string;
 }
 
-const images: ImageItem[] = [
-  { src: "/images/bath_1.jpg", alt: "Modern bathroom 1" },
-  { src: "/images/bath_2.png", alt: "Stylish bathroom 2" },
-  { src: "/images/bedroom_1-1.jpg", alt: "Cozy bedroom 1" },
-  { src: "/images/bedroom_1.jpg", alt: "Bright room 1" },
-  { src: "/images/bedroom_2.jpg", alt: "Inviting room 2" },
-  { src: "/images/grill.jpg", alt: "Outdoor grill" },
-  { src: "/images/kitchen-2.jpg", alt: "Spacious kitchen 2" },
-  { src: "/images/kitchen.jpg", alt: "Fully equipped kitchen" },
-  { src: "/images/livingroom-1.jpg", alt: "Living room 1" },
-  { src: "/images/livingroom-2.jpg", alt: "Living room 2" },
-  { src: "/images/livingroom.jpg", alt: "Elegant living area" },
-  { src: "/images/Picture 2.png", alt: "Artful decor" },
-  { src: "/images/pool.png", alt: "Sparkling pool" },
-  { src: "/images/terrace_arial.png", alt: "Aerial terrace view" },
-  { src: "/images/terrace.jpg", alt: "Sunny terrace" },
-  { src: "/images/view-1.jpg", alt: "Scenic view 1" },
-  { src: "/images/view.jpg", alt: "Panoramic view" },
-  { src: "/images/workspace.jpg", alt: "Dedicated workspace" },
+const imageData: { file: string; alt: string }[] = [
+  { file: "bath_1.jpg", alt: "Modern bathroom 1" },
+  { file: "bath_2.png", alt: "Stylish bathroom 2" },
+  { file: "bedroom_1-1.jpg", alt: "Cozy bedroom 1" },
+  { file: "bedroom_1.jpg", alt: "Bright room 1" },
+  { file: "bedroom_2.jpg", alt: "Inviting room 2" },
+  { file: "grill.jpg", alt: "Outdoor grill" },
+  { file: "kitchen-2.jpg", alt: "Spacious kitchen 2" },
+  { file: "kitchen.jpg", alt: "Fully equipped kitchen" },
+  { file: "livingroom-1.jpg", alt: "Living room 1" },
+  { file: "livingroom-2.jpg", alt: "Living room 2" },
+  { file: "livingroom.jpg", alt: "Elegant living area" },
+  { file: "Picture 2.png", alt: "Artful decor" },
+  { file: "pool.png", alt: "Sparkling pool" },
+  { file: "terrace_arial.png", alt: "Aerial terrace view" },
+  { file: "terrace.jpg", alt: "Sunny terrace" },
+  { file: "view-1.jpg", alt: "Scenic view 1" },
+  { file: "view.jpg", alt: "Panoramic view" },
+  { file: "workspace.jpg", alt: "Dedicated workspace" },
 ];
 
 const ImageGallery: React.FC = () => {
   const [isGalleryMode, setGalleryMode] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const images: ImageItem[] = imageData.map(({ file, alt }) => ({
+    src: `${base}images/${file}`,
+    alt,
+  }));
 
   const prevSlide = () =>
     setCurrentIndex((idx) => (idx - 1 + images.length) % images.length);

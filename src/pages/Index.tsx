@@ -5,15 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 const Index = () => {
+  const base = import.meta.env.BASE_URL;
   return (
     <div className="min-h-screen bg-background font-inter">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url('/images/terrace.jpg')",
-          }}
+          style={{ backgroundImage: `url('${base}images/terrace.jpg')` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/20 to-foreground/40" />
 
@@ -76,7 +75,7 @@ const Index = () => {
               </div>
               <div className="relative">
                 <img
-                  src="/images/terrace_arial.png"
+                  src={`${base}images/terrace_arial.png`}
                   alt="Casa Barbara exterior view"
                   className="rounded-lg shadow-lg w-full h-96 object-cover"
                 />
